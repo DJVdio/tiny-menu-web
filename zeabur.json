@@ -7,6 +7,7 @@
   },
   "env": {
     "NODE_ENV": "production",
-    "REACT_APP_API_BASE_URL": "https://tiny-menu-bcakend.zeabur.app"
+    "REACT_APP_API_BASE_URL": "https://tiny-menu-bcakend.zeabur.app",
+    "PORT": "8080"
   }
 }
