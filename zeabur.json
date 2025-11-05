@@ -1,0 +1,12 @@
+{
+  "build": {
+    "command": "npm run build"
+  },
+  "start": {
+    "command": "npm run serve"
+  },
+  "env": {
+    "NODE_ENV": "production",
+    "REACT_APP_API_BASE_URL": "https://tiny-menu-bcakend.zeabur.app"
+  }
+}

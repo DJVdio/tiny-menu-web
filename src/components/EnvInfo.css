@@ -1,0 +1,52 @@
+.env-info {
+  position: fixed;
+  bottom: 10px;
+  right: 10px;
+  display: flex;
+  gap: 8px;
+  z-index: 9999;
+  font-size: 12px;
+}
+
+.env-badge {
+  background: rgba(0, 0, 0, 0.75);
+  color: white;
+  padding: 4px 10px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+.env-label {
+  font-weight: 600;
+  opacity: 0.8;
+}
+
+.env-value {
+  font-family: 'Courier New', monospace;
+  background: rgba(255, 255, 255, 0.1);
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-size: 11px;
+}
+
+/* 生产环境样式 */
+.env-info .env-badge:first-child .env-value {
+  background: #52c41a;
+  color: white;
+}
+
+/* 开发环境提示 */
+@media (max-width: 768px) {
+  .env-info {
+    bottom: 5px;
+    right: 5px;
+    font-size: 10px;
+  }
+
+  .env-badge {
+    padding: 3px 8px;
+  }
+}

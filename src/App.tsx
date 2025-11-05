@@ -3,6 +3,8 @@ import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-d
 import Login from './pages/Login';
 import CustomerDishSelection from './pages/CustomerDishSelection';
 import ChefDishSelection from './pages/ChefDishSelection';
+import EnvTest from './pages/EnvTest';
+import EnvInfo from './components/EnvInfo';
 import './App.css';
 
 function App() {
@@ -12,8 +14,11 @@ function App() {
         <Route path="/" element={<Login />} />
         <Route path="/customer" element={<CustomerDishSelection />} />
         <Route path="/chef" element={<ChefDishSelection />} />
+        <Route path="/env-test" element={<EnvTest />} />
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
+      {/* 显示环境信息（仅在开发环境） */}
+      {process.env.NODE_ENV === 'development' && <EnvInfo />}
     </Router>
   );
 }
