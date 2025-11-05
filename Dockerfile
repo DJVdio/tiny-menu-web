@@ -3,6 +3,9 @@ FROM node:20-alpine AS build
 
 WORKDIR /app
 
+# 验证 Node 和 npm 版本
+RUN node --version && npm --version
+
 # 复制依赖配置
 COPY package*.json ./
 
