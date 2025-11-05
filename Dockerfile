@@ -34,8 +34,4 @@ EXPOSE 3000
 ENV CADDY_PORT=3000
 
 # 创建自定义 Caddyfile
-RUN echo ':3000 {\n\
-    root * /usr/share/caddy\n\
-    file_server\n\
-    try_files {path} /index.html\n\
-}' > /etc/caddy/Caddyfile
+RUN printf ':3000 {\n    root * /usr/share/caddy\n    file_server\n    try_files {path} /index.html\n}\n' > /etc/caddy/Caddyfile
