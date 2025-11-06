@@ -1,18 +1,6 @@
-import { User, Dish } from '../types';
+import { Dish } from '../types';
 
-// Mock用户数据
-export const mockUsers: User[] = [
-  {
-    id: '1',
-    name: '厨师',
-    role: 'chef',
-  },
-  {
-    id: '2',
-    name: '女朋友',
-    role: 'customer',
-  },
-];
+// 注意: mockUsers已被移除,用户现在通过注册系统创建
 
 // Mock菜品数据
 export const mockDishes: Dish[] = [

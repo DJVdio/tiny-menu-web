@@ -1,30 +1,66 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { mockUsers } from '../data/mockData';
-import { UserRole } from '../types';
+import { User } from '../types';
 import './Login.css';
 
 const Login: React.FC = () => {
-  const [selectedRole, setSelectedRole] = useState<UserRole | ''>('');
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
   const navigate = useNavigate();
 
   const handleLogin = () => {
-    if (!selectedRole) {
-      alert('请选择身份');
+    // 验证输入
+    if (!username.trim()) {
+      alert('请输入用户名');
+      return;
+    }
+    if (!password) {
+      alert('请输入密码');
       return;
     }
 
-    const user = mockUsers.find((u) => u.role === selectedRole);
-    if (user) {
-      // 存储用户信息到 localStorage
-      localStorage.setItem('currentUser', JSON.stringify(user));
+    // Mock用户: admin / 123456 (厨师身份)
+    if (username === 'admin' && password === '123456') {
+      const mockUser: User = {
+        id: 'mock-admin',
+        username: 'admin',
+        password: '123456',
+        name: '管理员厨师',
+        role: 'chef',
+        boundCustomerIds: [],
+      };
+      localStorage.setItem('currentUser', JSON.stringify(mockUser));
+      navigate('/chef');
+      return;
+    }
 
-      // 根据角色跳转到对应页面
-      if (selectedRole === 'customer') {
-        navigate('/customer');
-      } else {
-        navigate('/chef');
-      }
+    // 获取用户列表
+    const usersStr = localStorage.getItem('users');
+    const users: User[] = usersStr ? JSON.parse(usersStr) : [];
+
+    // 查找用户
+    const user = users.find((u) => u.username === username && u.password === password);
+
+    if (!user) {
+      alert('用户名或密码错误');
+      return;
+    }
+
+    // 检查是否已选择角色
+    if (!user.role) {
+      // 跳转到角色选择页面
+      navigate('/role-selection', { state: { user } });
+      return;
+    }
+
+    // 存储用户信息到 localStorage
+    localStorage.setItem('currentUser', JSON.stringify(user));
+
+    // 根据角色跳转到对应页面
+    if (user.role === 'customer') {
+      navigate('/customer');
+    } else {
+      navigate('/chef');
     }
   };
 
@@ -34,29 +70,43 @@ const Login: React.FC = () => {
         <h1 className="login-title">🍳 小小菜单</h1>
         <p className="login-subtitle">欢迎回来</p>
 
-        <div className="role-selection">
-          <div
-            className={`role-card ${selectedRole === 'customer' ? 'selected' : ''}`}
-            onClick={() => setSelectedRole('customer')}
-          >
-            <div className="role-icon">👩‍🦰</div>
-            <div className="role-name">客户</div>
-            <div className="role-desc">浏览和选择喜欢的菜品</div>
-          </div>
+        <div className="form-group">
+          <label htmlFor="username">用户名</label>
+          <input
+            type="text"
+            id="username"
+            className="form-input"
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
+            placeholder="请输入用户名"
+            onKeyPress={(e) => e.key === 'Enter' && handleLogin()}
+          />
+        </div>
 
-          <div
-            className={`role-card ${selectedRole === 'chef' ? 'selected' : ''}`}
-            onClick={() => setSelectedRole('chef')}
-          >
-            <div className="role-icon">👨‍🍳</div>
-            <div className="role-name">厨师</div>
-            <div className="role-desc">查看订单并确认菜品</div>
-          </div>
+        <div className="form-group">
+          <label htmlFor="password">密码</label>
+          <input
+            type="password"
+            id="password"
+            className="form-input"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            placeholder="请输入密码"
+            onKeyPress={(e) => e.key === 'Enter' && handleLogin()}
+          />
         </div>
 
         <button className="login-button" onClick={handleLogin}>
           登录
         </button>
+
+        <div className="mock-account-hint">
+          测试账号: admin / 123456
+        </div>
+
+        <div className="register-link">
+          还没有账户? <a href="/register">立即注册</a>
+        </div>
       </div>
     </div>
   );

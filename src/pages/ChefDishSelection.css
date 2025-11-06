@@ -34,6 +34,23 @@
   color: #666;
 }
 
+.requests-btn {
+  padding: 0.5rem 1.2rem;
+  background: #1890ff;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: all 0.3s;
+  font-weight: 500;
+}
+
+.requests-btn:hover {
+  background: #40a9ff;
+  transform: translateY(-1px);
+}
+
 .logout-btn {
   padding: 0.5rem 1.2rem;
   background: #ff4d4f;
@@ -372,4 +389,120 @@
     flex-direction: column;
     gap: 1rem;
   }
+}
+
+/* 绑定申请弹窗样式 */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.modal-content {
+  background: white;
+  border-radius: 16px;
+  padding: 2rem;
+  max-width: 500px;
+  width: 90%;
+  max-height: 80vh;
+  overflow-y: auto;
+  position: relative;
+}
+
+.modal-content h2 {
+  margin: 0 0 1.5rem 0;
+  color: #333;
+  font-size: 1.5rem;
+}
+
+.requests-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.request-item {
+  padding: 1rem;
+  border: 2px solid #e0e0e0;
+  border-radius: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: all 0.3s;
+}
+
+.request-item:hover {
+  border-color: #1890ff;
+  background: rgba(24, 144, 255, 0.05);
+}
+
+.request-info {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex: 1;
+}
+
+.customer-icon {
+  font-size: 2rem;
+}
+
+.request-details {
+  flex: 1;
+}
+
+.customer-name {
+  margin: 0 0 0.3rem 0;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #333;
+}
+
+.request-time {
+  margin: 0;
+  font-size: 0.85rem;
+  color: #999;
+}
+
+.request-actions {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.accept-btn,
+.reject-btn {
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  font-weight: 500;
+  transition: all 0.3s;
+}
+
+.accept-btn {
+  background: #52c41a;
+  color: white;
+}
+
+.accept-btn:hover {
+  background: #73d13d;
+  transform: translateY(-1px);
+}
+
+.reject-btn {
+  background: #ff4d4f;
+  color: white;
+}
+
+.reject-btn:hover {
+  background: #ff7875;
+  transform: translateY(-1px);
 }
