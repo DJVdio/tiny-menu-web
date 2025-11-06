@@ -22,10 +22,6 @@ const CustomerDishSelection: React.FC = () => {
       return;
     }
     const user = JSON.parse(userStr);
-    if (user.role !== 'customer') {
-      navigate('/');
-      return;
-    }
     setCurrentUser(user);
 
     // 加载已绑定的厨师
@@ -85,10 +81,10 @@ const CustomerDishSelection: React.FC = () => {
   };
 
   const openBindingModal = () => {
-    // 加载所有厨师列表
+    // 加载所有用户作为可绑定的厨师列表（除了自己）
     const usersStr = localStorage.getItem('users');
     const users: User[] = usersStr ? JSON.parse(usersStr) : [];
-    const chefs = users.filter((u) => u.role === 'chef');
+    const chefs = users.filter((u) => u.id !== currentUser?.id);
     setChefList(chefs);
     setShowBindingModal(true);
   };
@@ -164,7 +160,10 @@ const CustomerDishSelection: React.FC = () => {
         <div className="header-content">
           <h1>🍳 今日推荐菜品</h1>
           <div className="user-info">
-            <span className="user-name">{currentUser?.name}</span>
+            <span className="user-name">{currentUser?.name} (顾客视图)</span>
+            <button className="switch-role-btn" onClick={() => navigate('/chef')}>
+              切换到厨师视图
+            </button>
             <button className="logout-btn" onClick={handleLogout}>
               退出
             </button>

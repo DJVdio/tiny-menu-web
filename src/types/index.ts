@@ -1,15 +1,12 @@
-// 用户角色类型
-export type UserRole = 'chef' | 'customer';
-
 // 用户类型
+// 注意：每个用户同时拥有厨师和顾客两个身份
 export interface User {
   id: string;
   username: string;
   password: string;
   name: string;
-  role?: UserRole; // 注册时可能还没有选择角色
-  boundChefId?: string; // 顾客绑定的厨师ID
-  boundCustomerIds?: string[]; // 厨师绑定的顾客ID列表
+  boundChefId?: string; // 作为顾客时绑定的厨师ID
+  boundCustomerIds?: string[]; // 作为厨师时绑定的顾客ID列表
 }
 
 // 绑定申请状态

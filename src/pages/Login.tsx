@@ -19,18 +19,18 @@ const Login: React.FC = () => {
       return;
     }
 
-    // Mock用户: admin / 123456 (厨师身份)
+    // Mock用户: admin / 123456
     if (username === 'admin' && password === '123456') {
       const mockUser: User = {
         id: 'mock-admin',
         username: 'admin',
         password: '123456',
-        name: '管理员厨师',
-        role: 'chef',
+        name: '管理员',
         boundCustomerIds: [],
       };
       localStorage.setItem('currentUser', JSON.stringify(mockUser));
-      navigate('/chef');
+      // 默认进入顾客视图
+      navigate('/customer');
       return;
     }
 
@@ -46,22 +46,11 @@ const Login: React.FC = () => {
       return;
     }
 
-    // 检查是否已选择角色
-    if (!user.role) {
-      // 跳转到角色选择页面
-      navigate('/role-selection', { state: { user } });
-      return;
-    }
-
     // 存储用户信息到 localStorage
     localStorage.setItem('currentUser', JSON.stringify(user));
 
-    // 根据角色跳转到对应页面
-    if (user.role === 'customer') {
-      navigate('/customer');
-    } else {
-      navigate('/chef');
-    }
+    // 默认进入顾客视图
+    navigate('/customer');
   };
 
   return (

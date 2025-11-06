@@ -2,7 +2,6 @@ import React from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import Login from './pages/Login';
 import Register from './pages/Register';
-import RoleSelection from './pages/RoleSelection';
 import CustomerDishSelection from './pages/CustomerDishSelection';
 import ChefDishSelection from './pages/ChefDishSelection';
 import EnvTest from './pages/EnvTest';
@@ -15,7 +14,6 @@ function App() {
       <Routes>
         <Route path="/" element={<Login />} />
         <Route path="/register" element={<Register />} />
-        <Route path="/role-selection" element={<RoleSelection />} />
         <Route path="/customer" element={<CustomerDishSelection />} />
         <Route path="/chef" element={<ChefDishSelection />} />
         <Route path="/env-test" element={<EnvTest />} />

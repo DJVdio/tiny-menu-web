@@ -21,10 +21,6 @@ const ChefDishSelection: React.FC = () => {
       return;
     }
     const user: User = JSON.parse(userStr);
-    if (user.role !== 'chef') {
-      navigate('/');
-      return;
-    }
     setCurrentUser(user);
 
     // 加载绑定申请
@@ -188,7 +184,7 @@ const ChefDishSelection: React.FC = () => {
         <div className="header-content">
           <h1>👨‍🍳 客户点单</h1>
           <div className="user-info">
-            <span className="user-name">{currentUser?.name}</span>
+            <span className="user-name">{currentUser?.name} (厨师视图)</span>
             {bindingRequests.length > 0 && (
               <button
                 className="requests-btn"
@@ -197,6 +193,9 @@ const ChefDishSelection: React.FC = () => {
                 绑定申请 ({bindingRequests.length})
               </button>
             )}
+            <button className="switch-role-btn" onClick={() => navigate('/customer')}>
+              切换到顾客视图
+            </button>
             <button className="logout-btn" onClick={handleLogout}>
               退出
             </button>
