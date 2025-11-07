@@ -115,9 +115,9 @@ const CustomerDishSelection: React.FC = () => {
     const newRequest: BindingRequest = {
       id: Date.now().toString(),
       customerId: currentUser.id,
-      customerName: currentUser.name,
+      customerUsername: currentUser.username,
       chefId: selectedChefId,
-      chefName: chef.name,
+      chefUsername: chef.username,
       status: 'pending',
       createdAt: new Date().toISOString(),
       updatedAt: new Date().toISOString(),
@@ -160,7 +160,7 @@ const CustomerDishSelection: React.FC = () => {
         <div className="header-content">
           <h1>🍳 今日推荐菜品</h1>
           <div className="user-info">
-            <span className="user-name">{currentUser?.name} (顾客视图)</span>
+            <span className="user-name">{currentUser?.username} (顾客视图)</span>
             <button className="switch-role-btn" onClick={() => navigate('/chef')}>
               切换到厨师视图
             </button>
@@ -175,7 +175,7 @@ const CustomerDishSelection: React.FC = () => {
         <div className="binding-section">
           {boundChef ? (
             <div className="bound-chef-info">
-              <span>已绑定厨师: {boundChef.name}</span>
+              <span>已绑定厨师: {boundChef.username}</span>
             </div>
           ) : (
             <button className="bind-chef-btn" onClick={openBindingModal}>
@@ -248,7 +248,7 @@ const CustomerDishSelection: React.FC = () => {
                     onClick={() => setSelectedChefId(chef.id)}
                   >
                     <span className="chef-icon">👨‍🍳</span>
-                    <span className="chef-name">{chef.name}</span>
+                    <span className="chef-name">{chef.username}</span>
                   </div>
                 ))
               )}

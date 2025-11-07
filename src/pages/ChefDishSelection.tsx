@@ -184,7 +184,7 @@ const ChefDishSelection: React.FC = () => {
         <div className="header-content">
           <h1>👨‍🍳 客户点单</h1>
           <div className="user-info">
-            <span className="user-name">{currentUser?.name} (厨师视图)</span>
+            <span className="user-name">{currentUser?.username} (厨师视图)</span>
             {bindingRequests.length > 0 && (
               <button
                 className="requests-btn"
@@ -336,7 +336,7 @@ const ChefDishSelection: React.FC = () => {
                   <div className="request-info">
                     <span className="customer-icon">👩‍🦰</span>
                     <div className="request-details">
-                      <p className="customer-name">{request.customerName}</p>
+                      <p className="customer-name">{request.customerUsername}</p>
                       <p className="request-time">
                         {new Date(request.createdAt).toLocaleString('zh-CN')}
                       </p>

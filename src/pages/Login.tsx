@@ -25,12 +25,11 @@ const Login: React.FC = () => {
         id: 'mock-admin',
         username: 'admin',
         password: '123456',
-        name: '管理员',
         boundCustomerIds: [],
       };
       localStorage.setItem('currentUser', JSON.stringify(mockUser));
-      // 默认进入顾客视图
-      navigate('/customer');
+      // 跳转到角色选择页面
+      navigate('/role-selection');
       return;
     }
 
@@ -49,8 +48,8 @@ const Login: React.FC = () => {
     // 存储用户信息到 localStorage
     localStorage.setItem('currentUser', JSON.stringify(user));
 
-    // 默认进入顾客视图
-    navigate('/customer');
+    // 跳转到角色选择页面
+    navigate('/role-selection');
   };
 
   return (

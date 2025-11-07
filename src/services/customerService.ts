@@ -1,19 +1,22 @@
-import { get, post } from './api';
+import { get, post, del } from './api';
 import { API_ENDPOINTS } from '../config/api';
 import { CustomerSelection } from '../types';
 
-// 获取客户选择记录
-export async function getCustomerSelections(customerId: string): Promise<CustomerSelection[]> {
-  return get<CustomerSelection[]>(`${API_ENDPOINTS.customerSelections}?customerId=${customerId}`);
+// 获取我的选择记录
+export async function getMyCustomerSelections(): Promise<CustomerSelection[]> {
+  return get<CustomerSelection[]>(API_ENDPOINTS.myCustomerSelections);
 }
 
-// 提交客户选择
-export async function submitCustomerSelection(
-  customerId: string,
-  dishIds: string[]
+// 提交客户选择（选择菜品）
+export async function createCustomerSelection(
+  dishId: number
 ): Promise<{ success: boolean; message: string }> {
-  return post(API_ENDPOINTS.submitSelection, {
-    customerId,
-    dishIds,
+  return post(API_ENDPOINTS.createCustomerSelection, {
+    dish_id: dishId,
   });
+}
+
+// 取消客户选择
+export async function deleteCustomerSelection(id: number): Promise<void> {
+  return del(API_ENDPOINTS.deleteCustomerSelection(id));
 }

@@ -7,7 +7,6 @@ const Register: React.FC = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
-  const [name, setName] = useState('');
   const navigate = useNavigate();
 
   const handleRegister = () => {
@@ -22,10 +21,6 @@ const Register: React.FC = () => {
     }
     if (password !== confirmPassword) {
       alert('两次输入的密码不一致');
-      return;
-    }
-    if (!name.trim()) {
-      alert('请输入昵称');
       return;
     }
 
@@ -44,7 +39,6 @@ const Register: React.FC = () => {
       id: Date.now().toString(),
       username,
       password,
-      name,
       boundCustomerIds: [],
     };
 
@@ -52,9 +46,11 @@ const Register: React.FC = () => {
     users.push(newUser);
     localStorage.setItem('users', JSON.stringify(users));
 
-    alert('注册成功!请选择身份');
-    // 注册成功后跳转到身份选择页面
-    navigate('/role-selection', { state: { user: newUser } });
+    // 提示注册成功
+    alert('注册完成！请登录');
+
+    // 跳转到登录页面
+    navigate('/');
   };
 
   return (
@@ -96,18 +92,6 @@ const Register: React.FC = () => {
             value={confirmPassword}
             onChange={(e) => setConfirmPassword(e.target.value)}
             placeholder="请再次输入密码"
-          />
-        </div>
-
-        <div className="form-group">
-          <label htmlFor="name">昵称</label>
-          <input
-            type="text"
-            id="name"
-            className="form-input"
-            value={name}
-            onChange={(e) => setName(e.target.value)}
-            placeholder="请输入昵称"
           />
         </div>
 

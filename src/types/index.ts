@@ -4,7 +4,6 @@ export interface User {
   id: string;
   username: string;
   password: string;
-  name: string;
   boundChefId?: string; // 作为顾客时绑定的厨师ID
   boundCustomerIds?: string[]; // 作为厨师时绑定的顾客ID列表
 }
@@ -16,9 +15,9 @@ export type BindingRequestStatus = 'pending' | 'accepted' | 'rejected';
 export interface BindingRequest {
   id: string;
   customerId: string;
-  customerName: string;
+  customerUsername: string;
   chefId: string;
-  chefName: string;
+  chefUsername: string;
   status: BindingRequestStatus;
   createdAt: string;
   updatedAt: string;

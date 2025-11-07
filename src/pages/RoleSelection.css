@@ -1,0 +1,110 @@
+.role-selection-container {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  padding: 20px;
+}
+
+.role-selection-card {
+  background: white;
+  border-radius: 20px;
+  padding: 40px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+  width: 100%;
+  max-width: 600px;
+  text-align: center;
+}
+
+.role-selection-title {
+  font-size: 2.5rem;
+  margin: 0 0 10px 0;
+  color: #333;
+}
+
+.role-selection-subtitle {
+  font-size: 1.1rem;
+  color: #666;
+  margin: 0 0 40px 0;
+}
+
+.role-options {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.role-option {
+  flex: 1;
+  min-width: 200px;
+  max-width: 250px;
+  padding: 30px 20px;
+  border-radius: 15px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border: 3px solid transparent;
+}
+
+.role-option:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+}
+
+.customer-option {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+}
+
+.customer-option:hover {
+  border-color: #667eea;
+  background: linear-gradient(135deg, #5568d3 0%, #63408b 100%);
+}
+
+.chef-option {
+  background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+  color: white;
+}
+
+.chef-option:hover {
+  border-color: #f093fb;
+  background: linear-gradient(135deg, #d97de4 0%, #dc4455 100%);
+}
+
+.role-icon {
+  font-size: 4rem;
+  margin-bottom: 15px;
+}
+
+.role-name {
+  font-size: 1.5rem;
+  margin: 0 0 10px 0;
+  font-weight: 600;
+}
+
+.role-description {
+  font-size: 0.95rem;
+  margin: 0;
+  opacity: 0.95;
+  line-height: 1.4;
+}
+
+/* 响应式设计 */
+@media (max-width: 600px) {
+  .role-selection-card {
+    padding: 30px 20px;
+  }
+
+  .role-selection-title {
+    font-size: 2rem;
+  }
+
+  .role-options {
+    flex-direction: column;
+  }
+
+  .role-option {
+    max-width: 100%;
+  }
+}
